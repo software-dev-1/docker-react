@@ -10,6 +10,9 @@ COPY . .
 RUN npm run build
 
 FROM nginx
+EXPOSE 80
+# Expose port 80, beanstalk opens the port based one exposed port
+
 COPY --from=builder /usr/app/build /usr/share/nginx/html
 # Copy from earlier stage(builder) to current stage
 
