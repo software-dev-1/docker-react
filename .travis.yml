@@ -1,0 +1,12 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t dipakghodekar/docker-react -f Dockerfile.dev .
+
+script:
+  # Script should exited after execution with pass/fail result
+  # pass returns the zero status code
+  #  failuew returns the non-zero status code
+  - docker run -e  CI=true dipakghodekar/docker-react npm run test -- --coverage
